@@ -18,7 +18,7 @@ public class ClassCreatorProxy {
     String commandClassName;
     String className;
     String methodName;
-    String packName="com.trs.command";
+    String packName;
     Element element;
     String commandSimpleName;
     public ClassCreatorProxy(String commandClassName,String commandSimpleName, String className, String methodName, Element element) {
@@ -27,6 +27,7 @@ public class ClassCreatorProxy {
         this.methodName=methodName;
         this.element=element;
         this.commandSimpleName=commandSimpleName;
+        this.packName=commandClassName.substring(0,commandClassName.lastIndexOf("."));
     }
 
     public CharSequence getProxyClassFullName() {

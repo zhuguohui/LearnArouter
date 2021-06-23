@@ -24,7 +24,8 @@ public class TRSCommandManager {
         Method method = methodMap.get(trsCommand.getClass());
         if(method==null){
             //通过反射查找
-            String executorClassName = "com.trs.command."+trsCommand.getClass().getSimpleName() + "Executor";
+            String packName = trsCommand.getClass().getPackage().getName();
+            String executorClassName = packName+"."+trsCommand.getClass().getSimpleName() + "Executor";
             try {
                 method = Class.forName(executorClassName).getMethod("execute", trsCommand.getClass(), Context.class);
                 methodMap.put(trsCommand.getClass(),method);
